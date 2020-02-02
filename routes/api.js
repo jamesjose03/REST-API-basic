@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const Student = require('../models/students')
 
 //To retrieve the list
 router.get('/students', function(req,res){
@@ -8,11 +9,8 @@ router.get('/students', function(req,res){
 
 //To add to the db
 router.post('/students', function(req,res){
-    console.log(req.body)
-    res.send({
-        type:'POST',
-        name: req.body.name,
-        rank: req.body.rank
+    Student.create(req.body).then(function(student){
+        res.send(student)
     })
 })
 
