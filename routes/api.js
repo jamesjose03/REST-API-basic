@@ -21,6 +21,10 @@ router.put('/students/:id', function(req,res){
 
 //To delete value in the db
 router.delete('/students/:id', function(req,res){
+    Student.findByIdAndRemove({_id: req.params.id}).then(function(student){
+        res.send(student)
+    })
+    //console.log(req.params.id)
     res.send({type:'DELETE'})
 })
 
