@@ -8,10 +8,10 @@ router.get('/students', function(req,res){
 })
 
 //To add to the db
-router.post('/students', function(req,res){
+router.post('/students', function(req,res,next){
     Student.create(req.body).then(function(student){
         res.send(student)
-    })
+    }).catch(next)
 })
 
 // To update the db
