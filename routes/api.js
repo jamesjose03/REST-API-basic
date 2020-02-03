@@ -16,7 +16,10 @@ router.post('/students', function(req,res,next){
 
 // To update the db
 router.put('/students/:id', function(req,res){
-    res.send({type:'PUT'})
+    Student.findByIdAndUpdate({_id: req.params.id}, req.body).then(function(student){
+        res.send(student)
+    })
+
 })
 
 //To delete value in the db
